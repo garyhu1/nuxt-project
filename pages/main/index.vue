@@ -7,6 +7,15 @@
 <script>
     export default {
         components: {},
+        asyncData(context) {},
+        head() {
+            return {
+                title: "首页",
+            link: [
+                { hid: "main",rel: 'icon', type: 'image/x-icon', href: '/main.png' }
+            ]
+            }
+        },
     }
 </script>
 

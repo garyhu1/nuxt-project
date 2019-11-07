@@ -20,9 +20,10 @@
     import PageHead from "../components/PageHead"
     export default {
         components: {PageHead},
+        middleware: 'loggerPage',
         data() {
             return {
-                tabs: [
+                tabList: [
                     {
                         label: "首页",
                         path: "/main",
@@ -46,7 +47,28 @@
                 ]
             }
         },
+        mounted() {
+            console.log("挂载")
+            this.tabs.forEach(item => {
+                if(this.$route.path === item.path) {
+                    item.isShow = true;
+                }else {
+                    item.isShow = false;
+                }
+            })
+        },
         computed: {
+            tabs() {
+                this.tabList.forEach(item => {
+                    if(this.$route.path === item.path) {
+                        item.isShow = true;
+                    }else {
+                        item.isShow = false;
+                    }
+                })
+
+                return this.tabList;
+            },
             title() {
                 if(this.tabs){
                     let tab = this.tabs.find(item => {
